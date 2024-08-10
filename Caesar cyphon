@@ -1,0 +1,25 @@
+alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] * 2
+def caesar(text, shift, direction):
+    cipher = ""
+    for letter in text:
+        if letter in alphabets:
+            pos = alphabets.index(letter)
+            if direction == 'encode':
+                new_pos = pos + shift
+            elif direction == 'decode':
+                new_pos = pos - shift
+            new_let = alphabets[new_pos]
+            cipher += new_let
+        else:
+            cipher += letter
+    print(f"The {direction}d code is: {cipher}")
+con = False
+while not con:
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt: ").lower()
+    shift = int(input("Type the shift number: "))
+    shift = shift % 26
+    text = input("Type your message: ")
+    caesar(text, shift, direction)
+    result = input("If you want to continue, type 'yes', else type 'no': ").lower()
+    if result == 'no':
+        con = True
